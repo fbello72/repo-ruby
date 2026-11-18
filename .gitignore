@@ -36,3 +36,6 @@
 
 # Windows/WSL download metadata
 *:Zone.Identifier
+
+# Configuração local da IDE (JetBrains)
+/.idea/
