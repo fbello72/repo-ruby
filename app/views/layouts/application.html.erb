@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Primeiro App" %></title>
+    <title><%= content_for(:title) ? "#{content_for(:title)} · Repo Ruby" : "Repo Ruby" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="application-name" content="Primeiro App">
+    <meta name="application-name" content="Repo Ruby">
     <meta name="mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -24,6 +24,33 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header class="site-header">
+      <div class="container site-header__inner">
+        <%= link_to root_path, class: "brand", "aria-label": "Repo Ruby, página inicial" do %>
+          <svg class="brand__logo" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+            <path d="M9 4h14l7 8-14 16L2 12z" fill="#7a0f1c"/>
+            <path d="M9 4h14l7 8H2z" fill="#c4263a"/>
+            <path d="M2 12h28L16 28z" fill="#a31528"/>
+            <path d="M9 4l-1.5 8L16 28 12 12zM23 4l1.5 8L16 28l4-16z" fill="#fff" fill-opacity=".14"/>
+          </svg>
+          <span class="brand__name">Repo Ruby</span>
+        <% end %>
+
+        <nav class="site-nav" aria-label="Principal">
+          <%= link_to "Cadastro", new_user_path, class: "site-nav__link" %>
+          <%= link_to "Usuários", users_path, class: "site-nav__link" %>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <div class="card">
+        <%= yield %>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">Repo Ruby</div>
+    </footer>
   </body>
 </html>

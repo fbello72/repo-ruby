@@ -1,30 +1,233 @@
 /*
- * This is a manifest file that'll be compiled into application.css.
- *
- * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
- * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
- * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
- * depending on specificity.
- *
- * Consider organizing styles into separate files for maintainability.
+ * Estilos do Repo Ruby. Com Propshaft este arquivo é servido como está, sem pré-processamento.
+ * Paleta base: vermelho escuro (--ruby-*) sobre fundos neutros levemente avermelhados.
  */
 
-body {
-  font-family: system-ui, sans-serif;
-  max-width: 40rem;
-  margin: 2rem auto;
-  padding: 0 1rem;
-  line-height: 1.5;
+:root {
+  --ruby-950: #2a0509;
+  --ruby-900: #4a0a12;
+  --ruby-800: #650d19;
+  --ruby-700: #7a0f1c;
+  --ruby-600: #9b1426;
+  --ruby-500: #c4263a;
+  --ruby-100: #f8e3e5;
+  --ruby-50: #fcf3f4;
+
+  --bg: #faf6f6;
+  --surface: #ffffff;
+  --text: #2b1d1f;
+  --muted: #7a6a6c;
+  --border: #e8dcde;
+
+  --success-bg: #e9f5ec;
+  --success-border: #b5dcbf;
+  --success-text: #1d5a2e;
+
+  --radius: 12px;
+  --shadow: 0 1px 2px rgb(74 10 18 / 8%), 0 8px 24px rgb(74 10 18 / 8%);
 }
 
-.field { margin-bottom: 1rem; }
-.field label { display: block; font-weight: 600; margin-bottom: 0.25rem; }
-.field input { width: 100%; padding: 0.5rem; box-sizing: border-box; }
+*, *::before, *::after { box-sizing: border-box; }
 
-input[type="submit"] { padding: 0.5rem 1.25rem; cursor: pointer; }
+html { -webkit-text-size-adjust: 100%; }
 
-.errors { background: #fdecea; border: 1px solid #f5c2c0; padding: 0.5rem 1rem; margin-bottom: 1rem; }
-.notice { background: #e8f5e9; border: 1px solid #b7dfb9; padding: 0.5rem 1rem; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--bg);
+}
 
-table { width: 100%; border-collapse: collapse; }
-th, td { text-align: left; padding: 0.5rem; border-bottom: 1px solid #ddd; }
+.container {
+  width: 100%;
+  max-width: 46rem;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+main.container { flex: 1; padding-block: 2.5rem; }
+
+/* Cabeçalho */
+
+.site-header {
+  background: linear-gradient(135deg, var(--ruby-950), var(--ruby-800));
+  border-bottom: 3px solid var(--ruby-500);
+  box-shadow: 0 2px 12px rgb(42 5 9 / 35%);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 0.9rem;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: #fff;
+  text-decoration: none;
+}
+
+.brand__logo { width: 2rem; height: 2rem; }
+
+.brand__name {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+.site-nav { display: flex; gap: 0.25rem; }
+
+.site-nav__link {
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  color: var(--ruby-100);
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+.site-nav__link:hover,
+.site-nav__link:focus-visible {
+  background: rgb(255 255 255 / 14%);
+  color: #fff;
+}
+
+/* Conteúdo */
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-top: 4px solid var(--ruby-700);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 2rem;
+}
+
+h1 {
+  margin: 0 0 1.25rem;
+  font-size: 1.75rem;
+  line-height: 1.2;
+  color: var(--ruby-800);
+}
+
+p { margin: 0 0 1rem; }
+
+a { color: var(--ruby-600); text-underline-offset: 2px; }
+a:hover { color: var(--ruby-800); }
+
+/* Formulários */
+
+.field { margin-bottom: 1.1rem; }
+
+.field label {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: var(--ruby-900);
+}
+
+.field input {
+  width: 100%;
+  padding: 0.65rem 0.8rem;
+  font: inherit;
+  color: var(--text);
+  background: var(--ruby-50);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  transition: border-color 0.15s, box-shadow 0.15s, background-color 0.15s;
+}
+
+.field input:focus {
+  outline: none;
+  background: #fff;
+  border-color: var(--ruby-600);
+  box-shadow: 0 0 0 3px rgb(196 38 58 / 22%);
+}
+
+input[type="submit"] {
+  padding: 0.7rem 1.6rem;
+  font: inherit;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(180deg, var(--ruby-600), var(--ruby-800));
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgb(101 13 25 / 35%);
+  transition: filter 0.15s, transform 0.05s;
+}
+
+input[type="submit"]:hover { filter: brightness(1.12); }
+input[type="submit"]:active { transform: translateY(1px); }
+input[type="submit"]:focus-visible { outline: 3px solid rgb(196 38 58 / 40%); outline-offset: 2px; }
+
+/* Mensagens */
+
+.errors {
+  margin-bottom: 1.25rem;
+  padding: 0.85rem 1.1rem;
+  color: var(--ruby-900);
+  background: var(--ruby-50);
+  border: 1px solid #e7b3b9;
+  border-left: 4px solid var(--ruby-600);
+  border-radius: 8px;
+}
+
+.errors p { margin-bottom: 0.4rem; font-weight: 700; }
+.errors ul { margin: 0; padding-left: 1.2rem; }
+
+.notice {
+  margin-bottom: 1.25rem;
+  padding: 0.75rem 1.1rem;
+  color: var(--success-text);
+  background: var(--success-bg);
+  border: 1px solid var(--success-border);
+  border-left: 4px solid #2e8b4a;
+  border-radius: 8px;
+}
+
+/* Tabela */
+
+table { width: 100%; margin-bottom: 1.25rem; border-collapse: collapse; font-size: 0.95rem; }
+
+th, td { padding: 0.7rem 0.75rem; text-align: left; border-bottom: 1px solid var(--border); }
+
+th {
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ruby-100);
+  background: var(--ruby-800);
+}
+
+th:first-child { border-top-left-radius: 8px; }
+th:last-child { border-top-right-radius: 8px; }
+
+tbody tr:nth-child(even) { background: var(--ruby-50); }
+tbody tr:hover { background: var(--ruby-100); }
+
+/* Rodapé */
+
+.site-footer {
+  padding-block: 1.25rem;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--ruby-100);
+  background: var(--ruby-950);
+}
+
+@media (max-width: 36rem) {
+  .site-header__inner { flex-direction: column; }
+  .card { padding: 1.25rem; }
+  table { display: block; overflow-x: auto; }
+}
